@@ -58,17 +58,12 @@ export class LightPage {
     this.navCtrl.push(LightSectionPage, { section: section });
   }
 
-  repairSelected(section) {
-    console.log(section);
-  }
-
   changeLightStatus(event, section) {
     let percent = event.getSlidingPercent();
 
     let message = section.name + ': ' + section.status;
 
     if (Math.abs(percent) === 1) {
-      console.log(section);
       this._messageHelper.presentToast(message, 3000, 'bottom');
     }
   }
