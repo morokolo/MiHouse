@@ -6,10 +6,17 @@
 
 <ion-content class="outer-content">
   <ion-list padding-top>
-    <ion-item *ngFor="let section of sections" (click)="itemSelected(section)">
-      <ion-icon small name="radio-button-on" color="{{ section.status === 1 ? 'secondary' : 'danger' }}" item-left></ion-icon>
-      <ion-label>{{section.name}}</ion-label>
-      <ion-toggle small item-right checked="{{ section.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
-    </ion-item>
+    <ion-item-sliding *ngFor="let section of sections" (ionDrag)="changeLightStatus($event, section)">
+      <button ion-item (click)="itemSelected(section)">
+        <ion-icon small name="radio-button-on" color="{{ section.status === 1 ? 'secondary' : 'danger' }}" item-left></ion-icon>
+        <ion-label>{{section.name}}</ion-label>
+        <ion-note item-right>{{ section.status === 1 ? 'On' : 'Off' }}</ion-note>
+      </button>
+      <ion-item-options side="left">
+        <button ion-button color="{{ section.status === 1 ? 'secondary' : 'danger' }}">
+          {{section.status}}
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
