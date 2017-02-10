@@ -1,31 +1,23 @@
+<ion-header></ion-header>
 <ion-content class="outer-content">
 
   <div class="logo">
     <img src="assets/img/appicon.svg" alt="Ionic logo">
   </div>
 
-  <ion-list>
-    <form #authForm="ngForm" novalidate>
-
-      <ion-item class="no-padding">
-        <ion-input clearInput type="text" placeholder="Username" required (ngModel)="login.username" name="username" #username="ngModel" autocapitalize="none"></ion-input>
+  <form #authForm="ngForm" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">Username</ion-label>
+        <ion-input type="text" required (ngModel)="login.username" name="username" #username="ngModel" autocapitalize="none"></ion-input>
       </ion-item>
-      <!--username error divs-->
-      <div [hidden]="username.valid || username.untouched && !authForm.submitted">
-        <p color="danger">
-          Username is required
-        </p>
-      </div>
+      <p ion-text [hidden]="username.valid || !authForm.submitted" color="danger" padding-left>Username is required</p>
 
-      <ion-item class="no-padding">
-        <ion-input clearInput type="password" placeholder="Password" required (ngModel)="login.password" name="password" #password="ngModel"></ion-input>
+      <ion-item>
+        <ion-label color="primary">Password</ion-label>
+        <ion-input type="password" required (ngModel)="login.password" name="password" #password="ngModel"></ion-input>
       </ion-item>
-      <!--password error divs-->
-      <div [hidden]="password.valid || password.untouched && !authForm.submitted">
-        <p color="danger">
-          Password is required
-        </p>
-      </div>
+      <p ion-text [hidden]="password.valid || !authForm.submitted" color="danger" padding-left>Password is required</p>
 
       <br><br>
       <ion-row responsive-sm>
@@ -36,6 +28,6 @@
           <button ion-button (click)="onSignup()" color="light" block>Signup</button>
         </ion-col>
       </ion-row>
-    </form>
-  </ion-list>
+    </ion-list>
+  </form>
 </ion-content>
