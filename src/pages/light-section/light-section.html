@@ -12,10 +12,30 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-list padding-top>
-    <ion-item *ngFor="let item of section.lights">
-      <ion-label> {{item.name}}</ion-label>
-      <ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
-    </ion-item>
-  </ion-list>
+  <!--<ion-list padding-top>-->
+    <!--<ion-item *ngFor="let item of section.lights">-->
+      <!--<ion-label> {{item.name}}</ion-label>-->
+      <!--<ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>-->
+    <!--</ion-item>-->
+  <!--</ion-list>-->
+
+
+  <ion-content class="outer-content">
+
+    <ion-list padding-top>
+
+      <ion-item>
+        <ion-label>Turn On/Off</ion-label>
+        <ion-toggle disabled="false"  color="secondary"></ion-toggle>
+      </ion-item>
+
+      <ion-item *ngFor="let item of section.lights">
+        <ion-icon name="bulb" item-left></ion-icon>
+        <ion-label> {{item.name}}</ion-label>
+        <ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
 </ion-content>

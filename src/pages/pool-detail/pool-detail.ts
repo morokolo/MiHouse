@@ -13,7 +13,11 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class PoolDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  section:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams)
+  {
+    this.section = this.navParams.get('section');
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PoolDetailPage');
