@@ -31,8 +31,14 @@ export class LoginPage {
   onLogin(form: NgForm) {
 
     if (form.valid) {
-      this._authService.login(form.value['username'], form.value['password']);
-      this.navCtrl.push(TabsPage);
+      this._authService.login(form.value['username'], form.value['password'])
+        .subscribe(
+        data => {
+          this.navCtrl.push(TabsPage);
+        },
+        error => {
+          console.log('Error occured!');
+        });
     }
   }
 

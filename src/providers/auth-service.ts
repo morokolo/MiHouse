@@ -3,6 +3,11 @@ import 'rxjs/add/operator/map';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+import { Http, Response, RequestOptions, Headers }  from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class AuthService {
 
@@ -10,12 +15,28 @@ export class AuthService {
 
   constructor(
     public storage: Storage,
-    public events: Events
+    public events: Events,
+    public http: Http
   ) { }
 
-  login(username: string, password: string) {
-    this.storage.set(this.HAS_LOGGED_IN, true);
-    this.setUsername(username);
+  login(usernameInput: string, passwordInput: string) {
+    let url = 'http://userservice.staging.tangentmicroservices.com:80/api-token-auth/';
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(url, JSON.stringify({ username: usernameInput, password: passwordInput }), options)
+      .map((response: Response) => {
+        // login successful if there's a jwt token in the response
+        let user = response.json();
+        if (user && user.token) {
+          this.storage.set(this.HAS_LOGGED_IN, true);
+          this.storage.set('token', user.token);
+          this.setUsername(usernameInput);
+
+          return response;
+        }
+      });
   }
 
   setUsername(username: string) {
