@@ -1,22 +1,32 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {LightSectionPage} from '../light-section/light-section';
 
-/*
-  Generated class for the Light page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-light',
   templateUrl: 'light.html'
 })
 export class LightPage {
+  sections: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LightPage');
+    this.sections = [
+      {
+        cat: 'Kitchen',
+        lights: [
+          {
+            light1: 0,
+            light2: 1
+          }
+        ]
+      }
+    ];
+  }
+
+  itemSelected(section) {
+    this.navCtrl.push(LightSectionPage, { section: section });
   }
 
 }

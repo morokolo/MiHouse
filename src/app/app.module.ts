@@ -11,7 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { SettingsPage } from '../pages/settings/settings';
 import { HealthPage } from '../pages/health/health';
 import { LoginPage } from '../pages/login/login';
-
+import { LightSectionPage } from '../pages/light-section/light-section';
 // Providers
 import { AuthService } from '../providers/auth-service';
 
@@ -24,7 +24,8 @@ import { AuthService } from '../providers/auth-service';
     TabsPage,
     SettingsPage,
     HealthPage,
-    LoginPage
+    LoginPage,
+    LightSectionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -38,7 +39,8 @@ import { AuthService } from '../providers/auth-service';
     TabsPage,
     SettingsPage,
     HealthPage,
-    LoginPage
+    LoginPage,
+    LightSectionPage
   ],
   providers: [
     AuthService, Storage
