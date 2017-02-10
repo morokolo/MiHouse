@@ -15,6 +15,8 @@ import { LightSectionPage } from '../pages/light-section/light-section';
 import { IrrigationDetailPage } from '../pages/irrigation-detail/irrigation-detail';
 // Providers
 import { AuthService } from '../providers/auth-service';
+import { LoadingHelper} from '../providers/loading-helper';
+import {MessageHelper} from '../providers/message-helper';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import { AuthService } from '../providers/auth-service';
     IrrigationDetailPage
   ],
   providers: [
-    AuthService, Storage
+    AuthService, Storage, LoadingHelper, MessageHelper
   ]
 })
 export class AppModule { }

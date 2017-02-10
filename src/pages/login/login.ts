@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
-import { AlertController } from 'ionic-angular';
-
 import { LoadingController } from 'ionic-angular';
 // pages
 import { TabsPage } from '../tabs/tabs';
 // Providers
 import { AuthService } from '../../providers/auth-service';
+import {MessageHelper} from '../../providers/message-helper';
+
 /*
   Generated class for the Login page.
 
@@ -20,53 +20,45 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class LoginPage {
 
+  tabBarElement: any;
   loading: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public _authService: AuthService,
-    public  _alertController:AlertController,
+    public _messageHelper: MessageHelper,
     public loadingCtrl: LoadingController
-  ) { }
+  ) {
+    if (document.querySelector('.tabbar')) {
+      this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+    }
+  }
+
+  ionViewWillEnter() {
+    let elements = document.querySelectorAll('.tabbar');
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+  }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad LoginPage');
   }
 
   onLogin(form: NgForm) {
-    this.presentLoading('Logging in...');
 
     if (form.valid) {
-      this._authService.login(form.value['username'], form.value['password'])
+      this._authService.login(form.value['username'], form.value['password'], 'Logging In...')
         .subscribe(
-        data => {
-          this.dismiss();
+        (data) => {
           this.navCtrl.push(TabsPage);
         },
-        error => {
-            this.dismiss();
-            let alert = this._alertController.create({
-              title: 'Login Failed!',
-              subTitle: 'Please provide the correct login credentials.',
-              buttons: ['OK']
-            });
-            alert.present();
+        (error) => {
+          this._messageHelper.presentToast('Unable to login with provided credentials.', 3000, 'bottom');
         });
     }
   }
-
-  dismiss() {
-    this.loading.dismiss().catch(() => {
-      return true;
-    });
-  }
-
-  presentLoading(message) {
-    this.loading = this.loadingCtrl.create({
-      content: message
-    });
-
-    this.loading.present();
-  }
-
 }

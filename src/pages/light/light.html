@@ -8,7 +8,7 @@
   <ion-list padding-top>
     <ion-item *ngFor="let section of sections" (click)="itemSelected(section)">
       <ion-icon small name="radio-button-on" color="{{ section.status === 1 ? 'secondary' : 'danger' }}" item-left></ion-icon>
-      <ion-label>{{section.cat}}</ion-label>
+      <ion-label>{{section.name}}</ion-label>
       <ion-toggle small item-right checked="{{ section.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
     </ion-item>
   </ion-list>

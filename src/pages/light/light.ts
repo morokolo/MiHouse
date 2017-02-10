@@ -14,7 +14,7 @@ export class LightPage {
   ionViewDidLoad() {
     this.sections = [
       {
-        cat: 'Kitchen',
+        name: 'Kitchen',
         status: 1,
         lights: [
           {
@@ -28,7 +28,7 @@ export class LightPage {
         ]
       },
       {
-        cat: 'Dining Area',
+        name: 'Dining Area',
         status: 0,
         lights: [
           {
@@ -38,7 +38,7 @@ export class LightPage {
         ]
       },
       {
-        cat: 'Living Room',
+        name: 'Living Room',
         status: 1,
         lights: [
           {
