@@ -54,4 +54,8 @@ export class LightPage {
     this.navCtrl.push(LightSectionPage, { section: section });
   }
 
+  repairSelected(section) {
+    console.log(section);
+  }
+
 }
