@@ -10,6 +10,9 @@ import { SettingsPage } from '../pages/settings/settings';
 import { HealthPage } from '../pages/health/health';
 import { LoginPage } from '../pages/login/login';
 
+// Providers
+import { AuthService } from '../providers/auth-service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -35,6 +38,8 @@ import { LoginPage } from '../pages/login/login';
     HealthPage,
     LoginPage
   ],
-  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }]
+  providers: [
+    AuthService
+  ]
 })
 export class AppModule { }
