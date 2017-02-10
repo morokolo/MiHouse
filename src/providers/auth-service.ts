@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
+import { LoadingController } from 'ionic-angular';
 import { Http, Response, RequestOptions, Headers }  from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -13,6 +13,7 @@ import {LoadingHelper} from './loading-helper';
 export class AuthService {
 
   HAS_LOGGED_IN = 'hasLoggedIn';
+
 
   constructor(
     public storage: Storage,
@@ -45,7 +46,6 @@ export class AuthService {
           if (loadingMessage) {
             this._loadingHelper.dismiss();
           }
-
           return response;
         }
       })
@@ -83,4 +83,6 @@ export class AuthService {
     this.storage.clear();
     this.events.publish('user:logout');
   }
+
+
 }

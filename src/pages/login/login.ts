@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
-
+import { LoadingController } from 'ionic-angular';
 // pages
 import { TabsPage } from '../tabs/tabs';
 // Providers
@@ -20,11 +20,13 @@ import {MessageHelper} from '../../providers/message-helper';
 })
 export class LoginPage {
 
+  loading: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public _authService: AuthService,
-    public _messageHelper: MessageHelper
+    public _messageHelper: MessageHelper,
+    public loadingCtrl: LoadingController
   ) { }
 
   ionViewDidLoad() {
