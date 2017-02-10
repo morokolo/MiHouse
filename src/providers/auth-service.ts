@@ -4,9 +4,10 @@ import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { Http, Response, RequestOptions, Headers }  from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+
+import {LoadingHelper} from './loading-helper';
 
 @Injectable()
 export class AuthService {
@@ -16,31 +17,60 @@ export class AuthService {
   constructor(
     public storage: Storage,
     public events: Events,
-    public http: Http
+    public http: Http,
+    public _loadingHelper: LoadingHelper
   ) { }
 
-  login(usernameInput: string, passwordInput: string) {
+  login(usernameInput: string, passwordInput: string, loadingMessage: string) {
+    if (loadingMessage) {
+      this._loadingHelper.create(loadingMessage);
+    }
+
     let url = 'http://userservice.staging.tangentmicroservices.com:80/api-token-auth/';
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(url, JSON.stringify({ username: usernameInput, password: passwordInput }), options)
-      .map((response: Response) => {
+      .map(
+      (response: Response) => {
         // login successful if there's a jwt token in the response
         let user = response.json();
         if (user && user.token) {
           this.storage.set(this.HAS_LOGGED_IN, true);
           this.storage.set('token', user.token);
           this.setUsername(usernameInput);
+          this.events.publish('user:login');
+
+          if (loadingMessage) {
+            this._loadingHelper.dismiss();
+          }
 
           return response;
         }
+      })
+      .catch(err => {
+        if (loadingMessage) {
+          this._loadingHelper.dismiss();
+        }
+        return err; // observable needs to be returned or exception raised
       });
   }
 
   setUsername(username: string) {
     this.storage.set('username', username);
+  }
+
+  getUsername() {
+    return this.storage.get('username').then((value) => {
+      return value;
+    });
+  }
+
+  getToken() {
+    return this.storage.get('token').then((value) => {
+      return value;
+    });
   }
 
   hasLoggedIn() {
@@ -51,5 +81,6 @@ export class AuthService {
 
   logout() {
     this.storage.clear();
+    this.events.publish('user:logout');
   }
 }

@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { TabsPage } from '../tabs/tabs';
 // Providers
 import { AuthService } from '../../providers/auth-service';
+import {MessageHelper} from '../../providers/message-helper';
+
 /*
   Generated class for the Login page.
 
@@ -21,7 +23,8 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public _authService: AuthService
+    public _authService: AuthService,
+    public _messageHelper: MessageHelper
   ) { }
 
   ionViewDidLoad() {
@@ -31,15 +34,14 @@ export class LoginPage {
   onLogin(form: NgForm) {
 
     if (form.valid) {
-      this._authService.login(form.value['username'], form.value['password'])
+      this._authService.login(form.value['username'], form.value['password'], 'Logging In...')
         .subscribe(
-        data => {
+        (data) => {
           this.navCtrl.push(TabsPage);
         },
-        error => {
-          console.log('Error occured!');
+        (error) => {
+          this._messageHelper.presentToast('Unable to login with provided credentials.', 3000, 'top');
         });
     }
   }
-
 }

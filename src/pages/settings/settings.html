@@ -1,12 +1,39 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Settings</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content class="outer-content">
 
-<ion-content padding>
+  <ion-list padding-top>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="assets/img/icon.png">
+        </ion-avatar>
+        <h2>{{user}}</h2>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="primary">
+        <ion-icon name="text"></ion-icon>
+        Edit
+      </button>
+        <button ion-button color="secondary">
+        <ion-icon name="call"></ion-icon>
+        Delete
+      </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+        <ion-icon name="mail"></ion-icon>
+        Email
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
+  <ion-list>
+    <button ion-item (click)="onLogout()">Logout</button>
+  </ion-list>
 </ion-content>

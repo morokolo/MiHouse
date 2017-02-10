@@ -14,6 +14,8 @@ import { LoginPage } from '../pages/login/login';
 import { LightSectionPage } from '../pages/light-section/light-section';
 // Providers
 import { AuthService } from '../providers/auth-service';
+import { LoadingHelper} from '../providers/loading-helper';
+import {MessageHelper} from '../providers/message-helper';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { AuthService } from '../providers/auth-service';
     LightSectionPage
   ],
   providers: [
-    AuthService, Storage
+    AuthService, Storage, LoadingHelper, MessageHelper
   ]
 })
 export class AppModule { }

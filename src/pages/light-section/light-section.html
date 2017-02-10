@@ -13,7 +13,7 @@
 
 <ion-content class="outer-content">
   <ion-list padding-top>
-    <ion-item *ngFor="let item of section.lights" (click)="itemSelected(item)">
+    <ion-item *ngFor="let item of section.lights">
       <ion-label> {{item.name}}</ion-label>
       <ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
     </ion-item>

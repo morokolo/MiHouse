@@ -1,19 +1,15 @@
 page-login {
-
-  .text-input-clear-icon {
-    right: 5px !important;
-  }
-
   .logo {
-
     padding: 20px 0;
+    min-height: 200px;
+    text-align: center;
 
     img {
-      margin-right: auto;
-      margin-left: auto;
-      width: 100px;
-      height: 100px;
+      max-width: 150px;
     }
+  }
 
+  .list {
+    margin-bottom: 0;
   }
 }
