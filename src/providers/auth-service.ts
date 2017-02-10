@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { LoadingController } from 'ionic-angular';
 import { Http, Response, RequestOptions, Headers }  from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
