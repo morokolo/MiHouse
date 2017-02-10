@@ -1,4 +1,3 @@
-
 <ion-content padding>
 
   <ion-row class="logo">
@@ -6,11 +5,11 @@
   </ion-row>
 
   <ion-list>
-    <form (ngSubmit)="login(authForm)" #authForm="ngForm" padding novalidate>
+    <form (ngSubmit)="onLogin(authForm)" #authForm="ngForm" padding novalidate>
 
 
       <ion-item class="no-padding">
-        <ion-input clearInput type="text" placeholder="Username" required (ngModel)="username" name="username" #username="ngModel" autocapitalize="none"></ion-input>
+        <ion-input clearInput type="text" placeholder="Username" required (ngModel)="login.username" name="username" #username="ngModel" autocapitalize="none"></ion-input>
       </ion-item>
       <!--username error divs-->
       <div [hidden]="username.valid || username.untouched && !authForm.submitted">
@@ -20,7 +19,7 @@
       </div>
 
       <ion-item class="no-padding">
-        <ion-input clearInput type="password" placeholder="Password" required (ngModel)="password" name="password" #password="ngModel" ></ion-input>
+        <ion-input clearInput type="password" placeholder="Password" required (ngModel)="login.password" name="password" #password="ngModel"></ion-input>
       </ion-item>
       <!--password error divs-->
       <div [hidden]="password.valid || password.untouched && !authForm.submitted">

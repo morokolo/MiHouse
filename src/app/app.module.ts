@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Storage } from '@ionic/storage';
+
 // App pages
 import { LightPage } from '../pages/light/light';
 import { PoolPage } from '../pages/pool/pool';
@@ -39,7 +41,7 @@ import { AuthService } from '../providers/auth-service';
     LoginPage
   ],
   providers: [
-    AuthService
+    AuthService, Storage
   ]
 })
 export class AppModule { }

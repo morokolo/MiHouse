@@ -1,24 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Events } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
-/*
-  Generated class for the AuthService provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class AuthService {
 
+  HAS_LOGGED_IN = 'hasLoggedIn';
+
   constructor(
-    public http: Http
-  ) {}
+    public storage: Storage,
+    public events: Events
+  ) { }
 
-  login(username:string, password:string) {
-    console.log('i am attempting to login here!');
-
-    return true;
+  login(username: string, password: string) {
+    this.storage.set(this.HAS_LOGGED_IN, true);
+    this.setUsername(username);
   }
 
+  setUsername(username: string) {
+    this.storage.set('username', username);
+  }
+
+  hasLoggedIn() {
+    return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
+      return value === true;
+    });
+  }
+
+  logout() {
+    this.storage.clear();
+  }
 }

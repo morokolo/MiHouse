@@ -1,19 +1,35 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
-
+import { Splashscreen } from 'ionic-native';
+import { Storage } from '@ionic/storage';
+//App pages
 import { LoginPage } from '../pages/login/login';
+import { TabsPage} from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = LoginPage;
-  constructor(platform: Platform) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+
+  rootPage: any;
+
+  constructor(public platform: Platform, public storage: Storage) {
+
+    // Check if the user has already seen the tutorial
+    this.storage.get('hasLoggedIn')
+      .then((hasLoggedIn) => {
+        if (hasLoggedIn) {
+          this.rootPage = TabsPage;
+        } else {
+          this.rootPage = LoginPage;
+        }
+        this.platformReady()
+      })
+  }
+
+  platformReady() {
+    // Call any initial plugins when ready
+    this.platform.ready().then(() => {
       Splashscreen.hide();
     });
   }

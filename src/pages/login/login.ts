@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { NgForm } from '@angular/forms';
 
 // pages
 import { TabsPage } from '../tabs/tabs';
@@ -19,22 +19,21 @@ import { AuthService } from '../../providers/auth-service';
 export class LoginPage {
 
   constructor(
-      public navCtrl: NavController,
-      public navParams: NavParams,
-      public _authService: AuthService
-  ) {}
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public _authService: AuthService
+  ) { }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad LoginPage');
   }
 
-  login(form: Object) {
+  onLogin(form: NgForm) {
 
-    if (form['valid']) {
-      console.log('submitting the login form here!!');
-      this.navCtrl.setRoot(TabsPage);
+    if (form.valid) {
+      this._authService.login(form.value['username'], form.value['password']);
+      this.navCtrl.push(TabsPage);
     }
-
   }
 
 }
