@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {LightSectionPage} from '../light-section/light-section';
-import { ItemSliding } from 'ionic-angular';
 
 //App providers
 import {MessageHelper} from '../../providers/message-helper';
