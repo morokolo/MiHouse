@@ -20,14 +20,29 @@ import {MessageHelper} from '../../providers/message-helper';
 })
 export class LoginPage {
 
+  tabBarElement: any;
   loading: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public _authService: AuthService,
     public _messageHelper: MessageHelper,
     public loadingCtrl: LoadingController
-  ) { }
+  ) {
+    if (document.querySelector('.tabbar')) {
+      this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+    }
+  }
+
+  ionViewWillEnter() {
+    let elements = document.querySelectorAll('.tabbar');
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+  }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad LoginPage');
@@ -42,7 +57,7 @@ export class LoginPage {
           this.navCtrl.push(TabsPage);
         },
         (error) => {
-          this._messageHelper.presentToast('Unable to login with provided credentials.', 3000, 'top');
+          this._messageHelper.presentToast('Unable to login with provided credentials.', 3000, 'bottom');
         });
     }
   }
