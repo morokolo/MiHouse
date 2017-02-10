@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {LightSectionPage} from '../light-section/light-section';
+import { ItemSliding } from 'ionic-angular';
+
+//App providers
+import {MessageHelper} from '../../providers/message-helper';
 
 @Component({
   selector: 'page-light',
@@ -9,7 +13,7 @@ import {LightSectionPage} from '../light-section/light-section';
 export class LightPage {
   sections: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public _messageHelper: MessageHelper) { }
 
   ionViewDidLoad() {
     this.sections = [
@@ -56,6 +60,17 @@ export class LightPage {
 
   repairSelected(section) {
     console.log(section);
+  }
+
+  changeLightStatus(event, section) {
+    let percent = event.getSlidingPercent();
+
+    let message = section.name + ': ' + section.status;
+
+    if (Math.abs(percent) === 1) {
+      console.log(section);
+      this._messageHelper.presentToast(message, 3000, 'bottom');
+    }
   }
 
 }
