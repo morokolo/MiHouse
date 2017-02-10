@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+
+// pages
+import { TabsPage } from '../tabs/tabs';
+// Providers
+import { AuthService } from '../../providers/auth-service';
 /*
   Generated class for the Login page.
 
@@ -13,10 +18,23 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public _authService: AuthService
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    //console.log('ionViewDidLoad LoginPage');
+  }
+
+  login(form: Object) {
+
+    if (form['valid']) {
+      console.log('submitting the login form here!!');
+      this.navCtrl.setRoot(TabsPage);
+    }
+
   }
 
 }
