@@ -6,7 +6,11 @@
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content class="outer-content">
+  <ion-list padding-top>
+    <ion-item *ngFor="let section of sections" (click)="irrigationDetails(section)">
+      <ion-icon small name="radio-button-on" color="{{ section.status === 1 ? 'secondary' : 'danger' }}" item-left></ion-icon>
+      <ion-label>{{section.sectionName}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -12,6 +12,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { HealthPage } from '../pages/health/health';
 import { LoginPage } from '../pages/login/login';
 import { LightSectionPage } from '../pages/light-section/light-section';
+import { IrrigationDetailPage } from '../pages/irrigation-detail/irrigation-detail';
 // Providers
 import { AuthService } from '../providers/auth-service';
 
@@ -25,7 +26,8 @@ import { AuthService } from '../providers/auth-service';
     SettingsPage,
     HealthPage,
     LoginPage,
-    LightSectionPage
+    LightSectionPage,
+    IrrigationDetailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -40,7 +42,8 @@ import { AuthService } from '../providers/auth-service';
     SettingsPage,
     HealthPage,
     LoginPage,
-    LightSectionPage
+    LightSectionPage,
+    IrrigationDetailPage
   ],
   providers: [
     AuthService, Storage
