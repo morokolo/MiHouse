@@ -1,22 +1,36 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the Pool page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+import { PoolDetailPage } from '../pool-detail/pool-detail';
 @Component({
   selector: 'page-pool',
   templateUrl: 'pool.html'
 })
 export class PoolPage {
 
+  sections: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PoolPage');
+    this.sections = [
+      {
+        name: 'Pool pump',
+        status: 1,
+        lights: [
+          {
+            name: 'Light 1',
+            status: 1
+          },
+          {
+            name: 'Light 2',
+            status: 0
+          }
+        ]
+      }
+    ];
+  }
+  PoolDetails(section) {
+    this.navCtrl.push(PoolDetailPage, { section: section });
   }
 
 }

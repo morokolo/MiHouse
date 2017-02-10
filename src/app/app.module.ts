@@ -13,6 +13,7 @@ import { HealthPage } from '../pages/health/health';
 import { LoginPage } from '../pages/login/login';
 import { LightSectionPage } from '../pages/light-section/light-section';
 import { IrrigationDetailPage } from '../pages/irrigation-detail/irrigation-detail';
+import { PoolDetailPage } from '../pages/pool-detail/pool-detail';
 // Providers
 import { AuthService } from '../providers/auth-service';
 import { LoadingHelper} from '../providers/loading-helper';
@@ -29,7 +30,8 @@ import {MessageHelper} from '../providers/message-helper';
     HealthPage,
     LoginPage,
     LightSectionPage,
-    IrrigationDetailPage
+    IrrigationDetailPage,
+    PoolDetailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -45,7 +47,8 @@ import {MessageHelper} from '../providers/message-helper';
     HealthPage,
     LoginPage,
     LightSectionPage,
-    IrrigationDetailPage
+    IrrigationDetailPage,
+    PoolDetailPage
   ],
   providers: [
     AuthService, Storage, LoadingHelper, MessageHelper
