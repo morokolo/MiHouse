@@ -14,6 +14,8 @@ import { LoginPage } from '../pages/login/login';
 import { LightSectionPage } from '../pages/light-section/light-section';
 import { IrrigationDetailPage } from '../pages/irrigation-detail/irrigation-detail';
 import { PoolDetailPage } from '../pages/pool-detail/pool-detail';
+import { TravellerModePage } from '../pages/traveller-mode/traveller-mode';
+
 // Providers
 import { AuthService } from '../providers/auth-service';
 import { LoadingHelper} from '../providers/loading-helper';
@@ -31,7 +33,8 @@ import {MessageHelper} from '../providers/message-helper';
     LoginPage,
     LightSectionPage,
     IrrigationDetailPage,
-    PoolDetailPage
+    PoolDetailPage,
+    TravellerModePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -48,7 +51,8 @@ import {MessageHelper} from '../providers/message-helper';
     LoginPage,
     LightSectionPage,
     IrrigationDetailPage,
-    PoolDetailPage
+    PoolDetailPage,
+    TravellerModePage
   ],
   providers: [
     AuthService, Storage, LoadingHelper, MessageHelper

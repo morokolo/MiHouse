@@ -18,7 +18,6 @@ export class IrrigationDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.section = this.navParams.get('section');
-    console.log('this.section', this.section);
   }
 
 }
