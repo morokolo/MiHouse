@@ -20,7 +20,7 @@ export class LightSectionPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.section);
+    // console.log(this.section);
   }
 
 }

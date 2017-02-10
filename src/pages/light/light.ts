@@ -15,10 +15,35 @@ export class LightPage {
     this.sections = [
       {
         cat: 'Kitchen',
+        status: 1,
         lights: [
           {
-            light1: 0,
-            light2: 1
+            name: 'Light 1',
+            status: 1
+          },
+          {
+            name: 'Light 2',
+            status: 0
+          }
+        ]
+      },
+      {
+        cat: 'Dining Area',
+        status: 0,
+        lights: [
+          {
+            name: 'Main Light',
+            status: 1
+          }
+        ]
+      },
+      {
+        cat: 'Living Room',
+        status: 1,
+        lights: [
+          {
+            name: 'Middle',
+            status: 1
           }
         ]
       }

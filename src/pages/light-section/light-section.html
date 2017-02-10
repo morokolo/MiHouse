@@ -1,18 +1,21 @@
-<!--
-  Generated template for the LightSection page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>{{section.cat }}</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      {{section.cat }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="radio-button-on" color="{{ section.status === 1 ? 'secondary' : 'danger' }}"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content class="outer-content">
+  <ion-list padding-top>
+    <ion-item *ngFor="let item of section.lights" (click)="itemSelected(item)">
+      <ion-label> {{item.name}}</ion-label>
+      <ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
+    </ion-item>
+  </ion-list>
 </ion-content>
