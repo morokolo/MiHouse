@@ -19,7 +19,7 @@ export class HomesService {
   }
 
   getHomes(): Observable<any> {
-    this._loadingHelper.create('Loadging...');
+    this._loadingHelper.create('Loading...');
 
     let url = this._appSettings.BASE_URL + '/homes';
 
@@ -47,7 +47,7 @@ export class HomesService {
   }
 
   getHomeLightSection(home): Observable<any> {
-    this._loadingHelper.create('Loadging...');
+    this._loadingHelper.create('Loading...');
     let url = this._appSettings.BASE_URL + '/homes/' + home.id;
 
     return Observable
