@@ -7,18 +7,19 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import {LoadingHelper} from './loading-helper';
+import {AppSettings} from './app-settings';
 
 @Injectable()
 export class AuthService {
 
   HAS_LOGGED_IN = 'hasLoggedIn';
 
-
   constructor(
     public storage: Storage,
     public events: Events,
     public http: Http,
-    public _loadingHelper: LoadingHelper
+    public _loadingHelper: LoadingHelper,
+    public _appSettings: AppSettings
   ) { }
 
   login(usernameInput: string, passwordInput: string, loadingMessage: string) {
@@ -26,6 +27,7 @@ export class AuthService {
       this._loadingHelper.create(loadingMessage);
     }
 
+    // let url = this._appSettings.BASE_URL + '/api-auth/login'
     let url = 'http://userservice.staging.tangentmicroservices.com:80/api-token-auth/';
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
