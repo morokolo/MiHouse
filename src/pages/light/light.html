@@ -1,5 +1,10 @@
 <ion-header>
   <ion-navbar color="primary">
+    <ion-buttons start (click)="goBack()">
+      <button ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon> Back
+      </button>
+    </ion-buttons>
     <ion-title>Lights</ion-title>
   </ion-navbar>
 </ion-header>
@@ -8,9 +13,9 @@
   <ion-list padding-top>
     <ion-item-sliding *ngFor="let section of sections" (ionDrag)="changeLightStatus($event, section)">
       <button ion-item (click)="itemSelected(section)">
-        <ion-icon small name="radio-button-on" color="{{ section.status === 1 ? 'secondary' : 'danger' }}" item-left></ion-icon>
-        <ion-label>{{section.name}}</ion-label>
-        <ion-note item-right>{{ section.status === 1 ? 'On' : 'Off' }}</ion-note>
+        <ion-icon name="radio-button-on" color="{{ section.status === 1 ? 'secondary' : 'danger' }}" item-left></ion-icon>
+        <h2>{{section.name}}</h2>
+        <ion-note small item-right>{{ section.status === 1 ? 'On' : 'Off' }}</ion-note>
       </button>
       <ion-item-options side="left">
         <button ion-button color="{{ section.status === 1 ? 'secondary' : 'danger' }}"></button>

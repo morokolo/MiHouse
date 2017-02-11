@@ -15,11 +15,15 @@ import { LightSectionPage } from '../pages/light-section/light-section';
 import { IrrigationDetailPage } from '../pages/irrigation-detail/irrigation-detail';
 import { PoolDetailPage } from '../pages/pool-detail/pool-detail';
 import { TravellerModePage } from '../pages/traveller-mode/traveller-mode';
+import { HomePage} from '../pages/home/home';
 
 // Providers
 import { AuthService } from '../providers/auth-service';
 import { LoadingHelper} from '../providers/loading-helper';
 import {MessageHelper} from '../providers/message-helper';
+import {HttpHelper} from '../providers/http-helper';
+import {AppSettings} from '../providers/app-settings';
+import {HomesService} from '../providers/homes-service';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import {MessageHelper} from '../providers/message-helper';
     LightSectionPage,
     IrrigationDetailPage,
     PoolDetailPage,
-    TravellerModePage
+    TravellerModePage,
+    HomePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -52,10 +57,11 @@ import {MessageHelper} from '../providers/message-helper';
     LightSectionPage,
     IrrigationDetailPage,
     PoolDetailPage,
-    TravellerModePage
+    TravellerModePage,
+    HomePage
   ],
   providers: [
-    AuthService, Storage, LoadingHelper, MessageHelper
+    AuthService, Storage, LoadingHelper, MessageHelper, HttpHelper, AppSettings, HomesService
   ]
 })
 export class AppModule { }
