@@ -17,6 +17,9 @@ import { PoolDetailPage } from '../pages/pool-detail/pool-detail';
 import { TravellerModePage } from '../pages/traveller-mode/traveller-mode';
 import { HomePage} from '../pages/home/home';
 
+// Pipes
+import {Keys} from '../pipes/keys';
+
 // Providers
 import { AuthService } from '../providers/auth-service';
 import { LoadingHelper} from '../providers/loading-helper';
@@ -39,6 +42,7 @@ import {HomesService} from '../providers/homes-service';
     IrrigationDetailPage,
     PoolDetailPage,
     TravellerModePage,
+    Keys,
     HomePage
   ],
   imports: [
