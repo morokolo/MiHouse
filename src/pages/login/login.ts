@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
 // pages
-import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';
 // Providers
 import { AuthService } from '../../providers/auth-service';
 import {MessageHelper} from '../../providers/message-helper';
@@ -45,7 +45,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad LoginPage');
+
   }
 
   onLogin(form: NgForm) {
@@ -54,10 +54,10 @@ export class LoginPage {
       this._authService.login(form.value['username'], form.value['password'], 'Logging In...')
         .subscribe(
         (data) => {
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.push(HomePage);
         },
         (error) => {
-          this._messageHelper.presentToast('Unable to login with provided credentials.', 3000, 'bottom');
+          this._messageHelper.presentToast('Unable to login with provided credentials.', 3000, 'top');
         });
     }
   }

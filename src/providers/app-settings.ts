@@ -8,13 +8,17 @@ export class AppSettings {
 
   constructor(
     public http: Http)
-  {}
+  { }
 
   public get AUTHENTICATION_BASE_URL(): string {
     // Using Mock me
     let url = 'http://mockme.org/mockme/D5057B39C286BF789E6AC4BC098F2CB1A5ACAB00/';
 
     return url;
+  }
+
+  get BASE_URL(): string {
+    return 'http://41.185.28.63:8000/api';
   }
 
 }

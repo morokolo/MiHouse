@@ -84,65 +84,65 @@ export class HttpHelper {
     this.showLoading(loadingMessage);
 
     return Observable
-      .from(this.storage.get('apikey'))
+      .from(this.storage.get('token'))
       .flatMap(
-        (key) => {
+      (key) => {
 
-          data.apikey = key;
+        data.apikey = key;
 
-          let headers = new Headers({
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'apikey': key
-          });
+        let headers = new Headers({
+          'Content-Type': 'application/json',
+          'token': key
+        });
 
-          let params: URLSearchParams =  this.objToSearchParams(data);
+        let params: URLSearchParams = this.objToSearchParams(data);
 
-          if (action === 'GET') {
+        if (action === 'GET') {
 
-            return this.http.get(url, { search: params });
+          return this.http.get(url, { search: params });
 
-          } else if (action === 'POST') {
+        } else if (action === 'POST') {
 
-            let options = new RequestOptions({ headers });
-            return this.http.post(url, params, options);
+          let options = new RequestOptions({ headers });
+          return this.http.post(url, params, options);
 
-          } else if ( action === 'PUT') {
+        } else if (action === 'PUT') {
 
-            let options = new RequestOptions({ headers });
-            return this.http.put(url, params, options);
+          let options = new RequestOptions({ headers });
+          return this.http.put(url, params, options);
 
-          } else if (action === 'DELETE') {
+        } else if (action === 'DELETE') {
 
-            return this.http.delete(url, { search: params });
+          return this.http.delete(url, { search: params });
 
-          } else {
+        } else {
 
-            return Observable.of('Invalid Request');
-
-          }
+          return Observable.of('Invalid Request');
 
         }
+
+      }
       )
       .map(
-        (res) => {
-          this.hideLoading();
-          if (res.status === 204) {
-            return 'No Content';
-          } else if (res === 'Invalid Request') {
-            return res;
-          } else {
-            let body = res.json();
-            return body.data || {};
-          }
-        })
+      (res) => {
+        this.hideLoading();
+        if (res.status === 204) {
+          return 'No Content';
+        } else if (res === 'Invalid Request') {
+          return res;
+        } else {
+          let body = res.json();
+          return body.data || {};
+        }
+      })
       .timeout(this.timeOut, new Error('timeout'))
       .catch(
-        (err) => {
+      (err) => {
 
-          this.hideLoading();
-          return Observable.throw(err);
+        this.hideLoading();
+        return Observable.throw(err);
 
-        });
+      });
 
   };
 

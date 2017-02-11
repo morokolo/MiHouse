@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Dashboard</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-list padding-top>
+    <button ion-item *ngFor="let home of homes" (click)="itemSelected(home)">
+      <ion-icon name="home" item-left></ion-icon>
+      {{ home.name }}
+    </button>
+  </ion-list>
+</ion-content>
