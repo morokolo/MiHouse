@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
-
-
-import { Keys } from '../../pipes/keys';
 /*
   Generated class for the TravellerMode page.
 

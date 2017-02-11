@@ -23,4 +23,8 @@ export class LightSectionPage {
     // console.log(this.section);
   }
 
+  toggleLights(status) {
+    console.log('status', status);
+  }
+
 }
