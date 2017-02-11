@@ -110,4 +110,37 @@ export class HomesService {
         return err; // observable needs to be returned or exception raised
       });
   }
+
+  changeSectionSingleLightsStatus(light, loadMessage: string): Observable<any> {
+    if (loadMessage) {
+      this._loadingHelper.create(loadMessage);
+    }
+
+    let status = light.status !== 1 ? 1 : 0;
+
+    let url = this._appSettings.BASE_URL + '/light/' + light.id + '/' + status;
+
+    return Observable
+      .from(this.storage.get('token'))
+      .flatMap((key) => {
+        let headers = new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + key
+        });
+
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.put(url, {}, options);
+      })
+      .map(
+      (response) => {
+        if (loadMessage) { this._loadingHelper.dismiss(); }
+        return response.json();
+      })
+      .catch(
+      (err) => {
+        if (loadMessage) { this._loadingHelper.dismiss(); }
+        return err; // observable needs to be returned or exception raised
+      });
+  }
 }

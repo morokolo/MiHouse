@@ -17,7 +17,7 @@
     <ion-item *ngFor="let item of section.lights">
       <ion-icon name="bulb" item-left></ion-icon>
       <ion-label> {{item.name}}</ion-label>
-      <ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
+      <ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" (ionChange)="toggleLight(item)" color="secondary"></ion-toggle>
     </ion-item>
 
   </ion-list>
