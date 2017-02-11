@@ -18,8 +18,10 @@ export class HomesService {
   ) {
   }
 
-  getHomes(): Observable<any> {
-    this._loadingHelper.create('Loading...');
+  getHomes(loadMessage: string): Observable<any> {
+    if (loadMessage) {
+      this._loadingHelper.create(loadMessage);
+    }
 
     let url = this._appSettings.BASE_URL + '/homes';
 
@@ -36,18 +38,20 @@ export class HomesService {
       })
       .map(
       (response) => {
-        this._loadingHelper.dismiss();
+        if (loadMessage) { this._loadingHelper.dismiss(); }
         return response.json();
       })
       .catch(
       (err) => {
-        this._loadingHelper.dismiss();
+        if (loadMessage) { this._loadingHelper.dismiss(); }
         return err; // observable needs to be returned or exception raised
       });
   }
 
-  getHomeLightSection(home): Observable<any> {
-    this._loadingHelper.create('Loading...');
+  getHomeLightSection(home, loadMessage: string): Observable<any> {
+    if (loadMessage) {
+      this._loadingHelper.create(loadMessage);
+    }
     let url = this._appSettings.BASE_URL + '/homes/' + home.id;
 
     return Observable
@@ -64,12 +68,45 @@ export class HomesService {
       })
       .map(
       (response) => {
-        this._loadingHelper.dismiss();
+        if (loadMessage) { this._loadingHelper.dismiss(); }
         return response.json();
       })
       .catch(
       (err) => {
-        this._loadingHelper.dismiss();
+        if (loadMessage) { this._loadingHelper.dismiss(); }
+        return err; // observable needs to be returned or exception raised
+      });
+  }
+
+  changeSectionLightsStatus(section, loadMessage: string): Observable<any> {
+    if (loadMessage) {
+      this._loadingHelper.create(loadMessage);
+    }
+
+    let status = section.status !== 1 ? 1 : 0;
+
+    let url = this._appSettings.BASE_URL + '/section/' + section.id + '/' + status;
+
+    return Observable
+      .from(this.storage.get('token'))
+      .flatMap((key) => {
+        let headers = new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + key
+        });
+
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.put(url, {}, options);
+      })
+      .map(
+      (response) => {
+        if (loadMessage) { this._loadingHelper.dismiss(); }
+        return response.json();
+      })
+      .catch(
+      (err) => {
+        if (loadMessage) { this._loadingHelper.dismiss(); }
         return err; // observable needs to be returned or exception raised
       });
   }

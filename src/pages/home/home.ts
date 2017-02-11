@@ -36,7 +36,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this._homesService.getHomes()
+    this._homesService.getHomes('loading...')
       .subscribe(
       (response) => {
         this.homes = response;

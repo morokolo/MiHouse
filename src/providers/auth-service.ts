@@ -28,7 +28,6 @@ export class AuthService {
     }
 
     let url = this._appSettings.BASE_URL + '/auth/login'
-    // let url = 'http://userservice.staging.tangentmicroservices.com:80/api-token-auth/';
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -84,6 +83,4 @@ export class AuthService {
     this.storage.clear();
     this.events.publish('user:logout');
   }
-
-
 }

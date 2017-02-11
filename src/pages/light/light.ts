@@ -31,7 +31,7 @@ export class LightPage {
   }
 
   getHomeLightSection(home) {
-    this._homesService.getHomeLightSection(home)
+    this._homesService.getHomeLightSection(home, 'Loading...')
       .subscribe((data) => {
         this.sections = data;
       }, (error) => {
@@ -53,12 +53,22 @@ export class LightPage {
     let message = section.name + ': ' + (section.status === 0 ? 'On' : 'Off');
 
     if (Math.abs(percent) === 1) {
-      this._messageHelper.presentToast(message, 3000, 'bottom');
+      console.log(section);
+      this._homesService.changeSectionLightsStatus(section, 'Loading...')
+        .subscribe((data) => {
+          this.getHomeLightSection(data);
+          this._messageHelper.presentToast(message, 3000, 'bottom');
+        },
+        (err) => {
+          console.log(err);
+          this._messageHelper.presentToast(err.error, 3000, 'bottom');
+        });
+
       event.close();
     }
   }
 
   goBack() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push(HomePage);
   }
 }
