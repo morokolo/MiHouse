@@ -88,18 +88,18 @@ export class HttpHelper {
       .flatMap(
       (key) => {
 
-        data.apikey = key;
+        data.token = key;
 
         let headers = new Headers({
           'Content-Type': 'application/json',
-          'token': key
+          'Authorization': 'Token ' + key
         });
 
         let params: URLSearchParams = this.objToSearchParams(data);
 
         if (action === 'GET') {
-
-          return this.http.get(url, { search: params });
+          let options = new RequestOptions({ headers: headers });
+          return this.http.get(url, options);
 
         } else if (action === 'POST') {
 
@@ -120,9 +120,7 @@ export class HttpHelper {
           return Observable.of('Invalid Request');
 
         }
-
-      }
-      )
+      })
       .map(
       (res) => {
         this.hideLoading();
