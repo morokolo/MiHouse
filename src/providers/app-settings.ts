@@ -18,7 +18,7 @@ export class AppSettings {
   }
 
   get BASE_URL(): string {
-    return 'http://41.185.28.63:8000';
+    return 'http://41.185.28.63:8000/api';
   }
 
 }
