@@ -16,6 +16,9 @@ import { IrrigationDetailPage } from '../pages/irrigation-detail/irrigation-deta
 import { PoolDetailPage } from '../pages/pool-detail/pool-detail';
 import { TravellerModePage } from '../pages/traveller-mode/traveller-mode';
 
+// Pipes
+import {Keys} from '../pipes/keys';
+
 // Providers
 import { AuthService } from '../providers/auth-service';
 import { LoadingHelper} from '../providers/loading-helper';
@@ -34,7 +37,8 @@ import {MessageHelper} from '../providers/message-helper';
     LightSectionPage,
     IrrigationDetailPage,
     PoolDetailPage,
-    TravellerModePage
+    TravellerModePage,
+    Keys
   ],
   imports: [
     IonicModule.forRoot(MyApp)

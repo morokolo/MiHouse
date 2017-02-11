@@ -4,38 +4,73 @@
   </ion-navbar>
 </ion-header>
 
+<!--<ion-icon name="alarm"></ion-icon>-->
+
 <ion-content class="outer-content">
-  <ion-list padding-top>
-    <ion-item-sliding>
-      <ion-item>
-        <ion-avatar item-left>
-          <img src="assets/img/icon.png">
-        </ion-avatar>
-        <h2>{{user}}</h2>
-      </ion-item>
-      <ion-item-options side="left">
-        <button ion-button color="secondary">
-          <ion-icon name="create"></ion-icon>
-          Edit
-        </button>
-
-        <button ion-button color="danger">
-          <ion-icon name="trash"></ion-icon>
-          Delete
-        </button>
-
-        <button ion-button color="primary">
-          <ion-icon name="construct"></ion-icon>
-          Repair
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-
+  <p text-center>This allows you to automate house management.</p>
   <ion-list>
-    <button ion-item (click)="setTravellerMode()">Set Traveller Mode</button>
+    <ion-list-header color="primary">Traveller Settings</ion-list-header>
+
+    <ion-item (click)="setTravellerMode()">
+      <h2>Set Traveller Mode</h2>
+    </ion-item>
   </ion-list>
+  <p text-center>This section allows you to manage user settings.</p>
   <ion-list>
-    <button ion-item (click)="onLogout()">Logout</button>
+    <ion-list-header color="primary">User Settings</ion-list-header>
+
+    <ion-item>
+      <h2>Username</h2>
+      <ion-note item-right>{{user}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <h2>Password</h2>
+      <ion-note item-right>**********</ion-note>
+    </ion-item>
+    <ion-item>
+      <h2>Street</h2>
+      <ion-note item-right>16 Culross Court</ion-note>
+    </ion-item>
+    <ion-item>
+      <h2>City</h2>
+      <ion-note item-right>Bryanston</ion-note>
+    </ion-item>
   </ion-list>
+
+
+  <button (click)="onLogout()" ion-button color="danger" full>Sign Out</button>
+
+  <!--<ion-list>-->
+    <!--<button ion-item (click)="setTravellerMode()">Set Traveller Mode</button>-->
+  <!--</ion-list>-->
+  <!--<ion-list>-->
+    <!--<ion-item-sliding>-->
+      <!--<ion-item>-->
+        <!--<ion-avatar item-left>-->
+          <!--<img src="assets/img/icon.png">-->
+        <!--</ion-avatar>-->
+        <!--<h2>{{user}}</h2>-->
+      <!--</ion-item>-->
+      <!--<ion-item-options side="left">-->
+        <!--<button ion-button color="secondary">-->
+          <!--<ion-icon name="create"></ion-icon>-->
+          <!--Edit-->
+        <!--</button>-->
+
+        <!--<button ion-button color="danger">-->
+          <!--<ion-icon name="trash"></ion-icon>-->
+          <!--Delete-->
+        <!--</button>-->
+
+        <!--<button ion-button color="primary">-->
+          <!--<ion-icon name="construct"></ion-icon>-->
+          <!--Repair-->
+        <!--</button>-->
+      <!--</ion-item-options>-->
+    <!--</ion-item-sliding>-->
+  <!--</ion-list>-->
+
+  <!--<ion-list>-->
+    <!--<button ion-item (click)="onLogout()">Logout</button>-->
+  <!--</ion-list>-->
 </ion-content>
