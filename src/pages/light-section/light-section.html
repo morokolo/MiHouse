@@ -12,13 +12,13 @@
 
     <ion-item>
       <ion-label>Turn On/Off</ion-label>
-      <ion-toggle color="secondary" checked="{{ section.status === '1' ? 'true' : 'false' }}"></ion-toggle>
+      <ion-toggle color="secondary" checked="{{ section.status === 1 ? 'true' : 'false' }}"></ion-toggle>
     </ion-item>
 
     <ion-item *ngFor="let item of section.lights">
       <ion-icon name="bulb" item-left></ion-icon>
       <ion-label> {{item.name}}</ion-label>
-      <ion-toggle disabled="{{ section.status === '0' ? 'true' : 'false' }}" checked="{{ item.status === '1' ? 'true' : 'false' }}" color="secondary"></ion-toggle>
+      <ion-toggle disabled="{{ section.status === 0 ? 'true' : 'false' }}" checked="{{ item.status === 1 ? 'true' : 'false' }}" color="secondary"></ion-toggle>
     </ion-item>
 
   </ion-list>
