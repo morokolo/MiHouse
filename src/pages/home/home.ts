@@ -36,30 +36,14 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.getHomes();
-  }
-
-  getHomes() {
-    this.homes = [
-      {
-        name: 'Tangent Solutions',
-        id: 1
+    this._homesService.getHomes()
+      .subscribe(
+      (response) => {
+        this.homes = response;
       },
-      {
-        name: 'Tangent Vodacom',
-        id: 2
-      }
-    ];
-
-    // this._homesService.getHomes()
-    //   .subscribe(
-    //   (response) => {
-    //     console.log(response);
-    //
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   });
+      (error) => {
+        console.log(error);
+      });
   }
 
   itemSelected(home) {
