@@ -13,7 +13,7 @@
 
       <ion-item>
         <ion-label>Turn On/Off</ion-label>
-        <ion-toggle color="secondary" checked="{{ section.status === '1' ? 'true' : 'false' }}"></ion-toggle>
+        <ion-toggle color="secondary" [(ngModel)]="section.status" (ionChange)="toggleLights(section)" checked="{{ section.status === '1' ? 'true' : 'false' }}"></ion-toggle>
       </ion-item>
 
       <ion-item *ngFor="let item of section.lights">
